@@ -9,3 +9,6 @@ export type { AuditEventInput, AuditEventResult } from './logAuditEvent'
 
 export { meterCall } from './meterCall'
 export type { MeterCallInput, MeterCallResult } from './meterCall'
+
+export { withTrust, createTrustMiddleware } from './nextjs'
+export type { ScopeRule } from './nextjs'
