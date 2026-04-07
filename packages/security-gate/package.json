@@ -1,0 +1,9 @@
+{
+  "name": "@platform-trust/security-gate",
+  "version": "0.1.0",
+  "main": "index.ts",
+  "types": "index.ts",
+  "dependencies": {
+    "@supabase/supabase-js": "^2.49.4"
+  }
+}
