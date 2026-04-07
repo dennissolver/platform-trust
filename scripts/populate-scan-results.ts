@@ -65,6 +65,7 @@ async function main() {
       const { error } = await supabaseAdmin.from("security_scans").insert({
         project_id: projectId,
         scan_type: "portfolio_scan",
+        triggered_by: "manual",
         compliance_status:
           report.overall_grade.startsWith("A") || report.overall_grade.startsWith("B")
             ? "PASS"
