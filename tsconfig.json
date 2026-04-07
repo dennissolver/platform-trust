@@ -28,6 +28,12 @@
       ],
       "@platform-trust/middleware": [
         "./packages/middleware"
+      ],
+      "@platform-trust/agent-trust-score": [
+        "./packages/agent-trust-score/index.ts"
+      ],
+      "@platform-trust/agent-trust-score/*": [
+        "./packages/agent-trust-score/*"
       ]
     }
   },
