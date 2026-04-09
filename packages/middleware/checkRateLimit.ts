@@ -12,6 +12,11 @@ export interface RateLimitResult {
   current_count?: number
   max_requests?: number
   retry_after_seconds?: number
+  denial_reason?: 'request_count' | 'token_budget' | 'spend_cap'
+  current_spend_usd?: number
+  max_spend_usd?: number
+  current_tokens?: number
+  max_tokens?: number
 }
 
 const WINDOW_SECONDS: Record<string, number> = {
@@ -68,11 +73,12 @@ export async function checkRateLimit(
       continue
     }
 
-    // Window active — check if at limit
+    // Window active — check request count limit
     if (limit.current_count >= limit.max_requests) {
       const retryAfter = Math.ceil((windowEnd.getTime() - now.getTime()) / 1000)
       return {
         allowed: false,
+        denial_reason: 'request_count',
         window_type: limit.window_type,
         current_count: limit.current_count,
         max_requests: limit.max_requests,
@@ -80,7 +86,44 @@ export async function checkRateLimit(
       }
     }
 
-    // Increment counter atomically
+    // Check token budget and spend cap (if configured)
+    if (limit.max_tokens || limit.max_spend_usd) {
+      const { data: usage, error: usageError } = await supabase.rpc('get_window_usage', {
+        p_project_id: project_id,
+        p_window_start: windowStart.toISOString(),
+      })
+
+      if (!usageError && usage && usage.length > 0) {
+        const { total_cost_usd, total_tokens } = usage[0]
+        const retryAfter = Math.ceil((windowEnd.getTime() - now.getTime()) / 1000)
+
+        // Token budget check
+        if (limit.max_tokens && total_tokens >= limit.max_tokens) {
+          return {
+            allowed: false,
+            denial_reason: 'token_budget',
+            window_type: limit.window_type,
+            current_tokens: Number(total_tokens),
+            max_tokens: limit.max_tokens,
+            retry_after_seconds: retryAfter,
+          }
+        }
+
+        // Spend cap check
+        if (limit.max_spend_usd && Number(total_cost_usd) >= Number(limit.max_spend_usd)) {
+          return {
+            allowed: false,
+            denial_reason: 'spend_cap',
+            window_type: limit.window_type,
+            current_spend_usd: Number(total_cost_usd),
+            max_spend_usd: Number(limit.max_spend_usd),
+            retry_after_seconds: retryAfter,
+          }
+        }
+      }
+    }
+
+    // Increment request counter atomically
     const { error: incError } = await supabase.rpc('increment_rate_limit', {
       limit_id: limit.id,
     })
