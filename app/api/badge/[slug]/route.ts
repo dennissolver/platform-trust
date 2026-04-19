@@ -4,8 +4,8 @@ import { generateBadgeSvg } from '@/lib/compliance'
 import {
   renderBadge,
   renderExpiredBadge,
-} from '@platform-trust/agent-trust-score'
-import type { TrustScoreReport, Grade, DimensionScore, Dimension } from '@platform-trust/agent-trust-score'
+} from '@caistech/agent-trust-score'
+import type { TrustScoreReport, Grade, DimensionScore, Dimension } from '@caistech/agent-trust-score'
 
 // GET /api/badge/[slug] — public compliance badge SVG
 // Returns trust score badge if available, falls back to legacy badge

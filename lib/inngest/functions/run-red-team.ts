@@ -14,9 +14,9 @@ import {
   createRedTeamRunner,
   EndpointRegistry,
   RedTeamReporter,
-} from "../../../packages/security-gate/red-team";
-import type { ModelCallFn } from "../../../packages/security-gate/types";
-import type { RegisteredEndpoint } from "../../../packages/security-gate/red-team/types";
+} from "@caistech/security-gate/red-team";
+import type { ModelCallFn } from "@caistech/security-gate/types";
+import type { RegisteredEndpoint } from "@caistech/security-gate/red-team/types";
 
 /**
  * Create a ModelCallFn that calls an HTTP endpoint.

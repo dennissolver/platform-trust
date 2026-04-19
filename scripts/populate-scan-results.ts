@@ -3,7 +3,7 @@
  * This populates the dashboard with real trust score data.
  */
 
-import { scanProject } from "../packages/agent-trust-score";
+import { scanProject } from "@caistech/agent-trust-score";
 import { supabaseAdmin } from "../lib/supabase";
 
 const BASE = "C:/Users/denni/PycharmProjects";

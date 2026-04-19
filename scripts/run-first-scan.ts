@@ -3,7 +3,7 @@
  * Usage: npx tsx scripts/run-first-scan.ts
  */
 
-import { scanProject } from "../packages/agent-trust-score";
+import { scanProject } from "@caistech/agent-trust-score";
 
 async function main() {
   const projectRoot = "C:/Users/denni/PycharmProjects/MMCBuild";

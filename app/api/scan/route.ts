@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { supabaseAdmin } from '@/lib/supabase'
-import { scanProject } from '@platform-trust/agent-trust-score'
-import type { TrustScoreReport } from '@platform-trust/agent-trust-score'
+import { scanProject } from '@caistech/agent-trust-score'
+import type { TrustScoreReport } from '@caistech/agent-trust-score'
 
 /**
  * POST /api/scan — Run an Agent Trust Score scan against a project.

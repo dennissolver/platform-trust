@@ -10,7 +10,7 @@
 
 import { inngest } from "../client";
 import { supabaseAdmin } from "../../supabase";
-import { scanProject } from "../../../packages/agent-trust-score";
+import { scanProject } from "@caistech/agent-trust-score";
 import { execSync } from "child_process";
 import { mkdtempSync, rmSync } from "fs";
 import { join } from "path";

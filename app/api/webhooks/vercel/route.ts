@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { supabaseAdmin } from '@/lib/supabase'
-import { scanProject } from '@platform-trust/agent-trust-score'
+import { scanProject } from '@caistech/agent-trust-score'
 import { execSync } from 'child_process'
 import { mkdtempSync, rmSync } from 'fs'
 import { join } from 'path'

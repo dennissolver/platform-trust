@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { supabaseAdmin } from '@/lib/supabase'
-import { checkRateLimit } from '@platform-trust/middleware'
+import { checkRateLimit } from '@caistech/platform-trust-middleware'
 
 // POST /api/rate-limit/check — check rate limit for an agent
 export async function POST(request: NextRequest) {
