@@ -9,9 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@caistech/agent-trust-score": "^0.1.0",
-    "@caistech/platform-trust-middleware": "^0.2.0",
-    "@caistech/security-gate": "^0.1.0",
+    "@caistech/agent-trust-score": "^0.2.0",
+    "@caistech/platform-trust-middleware": "^0.3.0",
+    "@caistech/security-gate": "^0.2.0",
     "@supabase/supabase-js": "^2.49.4",
     "inngest": "^4.2.0",
     "next": "^15.3.1",
